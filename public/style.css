@@ -837,36 +837,9 @@ a {
     animation: none;
 }
 
-.product-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: linear-gradient(135deg, #E31E24, #ff4757);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    z-index: 3;
-    animation: badge-pulse 2s ease-in-out infinite;
-    box-shadow: 0 5px 15px rgba(227, 30, 36, 0.4);
-}
-
-@keyframes badge-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-}
 
 .product-name {
+
     font-size: 1.5rem;
     font-weight: 800;
     background: linear-gradient(135deg, #00A859, #00934e);

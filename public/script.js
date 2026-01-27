@@ -142,90 +142,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Brands Tab Switching Logic ---
-    const brandData = {
-        'biscuits': {
-            title: 'Biscuits And Cookies',
-            description: 'Our range of products include 3 Pm, Biskins, Celio, Chocobis, Cookie bits, Dark Bravo, Little Lunch, Waffles and more.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2021/05/biscuits.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/06/3-pm.png',
-                'https://sr25.in/wp-content/uploads/2021/06/biskins.png',
-                'https://sr25.in/wp-content/uploads/2021/06/celio.png',
-                'https://sr25.in/wp-content/uploads/2021/06/cookie-bits.png',
-                'https://sr25.in/wp-content/uploads/2021/06/little-lunch.png'
-            ]
-        },
-        'bubble-gums': {
-            title: 'Bubble Gums',
-            description: 'Experience a burst of flavor with our premium bubble gums, offering long-lasting taste and perfect texture for the ultimate chewing experience.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2021/05/bubble-gum.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png',
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png'
-            ]
-        },
-        'cakes': {
-            title: 'Cakes & Pastries',
-            description: 'Deliciously soft and moist cakes made with the finest ingredients to satisfy your sweet cravings any time of the day.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2021/05/biscuits.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png'
-            ]
-        },
-        'candies': {
-            title: 'Sweet Candies',
-            description: 'A colorful variety of hard and soft candies that bring a smile to faces of all ages with every single bite.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2021/06/imly.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png'
-            ]
-        },
-        'chocolates': {
-            title: 'Fine Chocolates',
-            description: 'Indulge in our collection of rich, creamy chocolates crafted for true connoisseurs of sweetness.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2025/06/bravo.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png'
-            ]
-        },
-        'fruit-jelly': {
-            title: 'Juicy Fruit Jelly',
-            description: 'Real fruit flavors packed into fun, jiggly jelly treats that everyone loves.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2025/06/juicy-jelly.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png'
-            ]
-        },
-        'lollipop': {
-            title: 'Fun Lollipops',
-            description: 'Long-lasting sweetness on a stick, available in multiple exciting fruit flavors.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2025/06/rollaa.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png'
-            ]
-        },
-        'premium-products': {
-            title: 'Premium Selection',
-            description: 'Our most exclusive range of confectionery items, curated for those who seek the extraordinary.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2025/07/coco-1.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png'
-            ]
-        },
-        'toffee': {
-            title: 'Classic Toffees',
-            description: 'Traditional butter-rich toffees that melt in your mouth, leaving a trail of pure happiness.',
-            mainImage: 'https://sr25.in/wp-content/uploads/2025/06/imly.png',
-            logos: [
-                'https://sr25.in/wp-content/uploads/2021/05/logo-8-200x200.png'
-            ]
-        }
-    };
+    const brandData = window.brandsData || {};
 
     const pills = document.querySelectorAll('.category-pill');
     const brandTitle = document.getElementById('brand-title');
     const brandDesc = document.getElementById('brand-description');
     const brandImage = document.getElementById('brand-main-image');
+    const brandLink = document.getElementById('brand-link');
     const logosGrid = document.getElementById('brand-logos-grid');
 
     if (pills.length > 0) {
@@ -247,21 +170,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Update content
                         const data = brandData[category];
                         if (brandTitle) brandTitle.textContent = data.title;
-                        if (brandDesc) brandDesc.textContent = data.description;
+                        if (brandDesc) brandDesc.textContent = data.desc;
+                        if (brandLink) brandLink.href = data.link || '/products';
                         if (brandImage) {
-                            brandImage.src = data.mainImage;
+                            brandImage.src = `/storage/${data.main_img}`;
                             brandImage.alt = data.title;
                         }
 
                         // Update logos
                         if (logosGrid) {
                             logosGrid.innerHTML = '';
-                            data.logos.forEach(logoUrl => {
-                                const logoCard = document.createElement('div');
-                                logoCard.className = 'logo-card';
-                                logoCard.innerHTML = `<img src="${logoUrl}" alt="Brand Logo">`;
-                                logosGrid.appendChild(logoCard);
-                            });
+                            if (data.logos) {
+                                data.logos.forEach(logoPath => {
+                                    const logoCard = document.createElement('div');
+                                    logoCard.className = 'logo-card';
+                                    logoCard.innerHTML = `<img src="/storage/${logoPath}" alt="Brand Logo">`;
+                                    logosGrid.appendChild(logoCard);
+                                });
+                            }
                         }
 
                         // Animate content in
@@ -277,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
 
     // --- About Section Animations ---
     const aboutSection = document.querySelector('.about-section');
