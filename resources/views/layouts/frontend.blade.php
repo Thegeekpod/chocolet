@@ -26,8 +26,7 @@
                 <a href="{{ url('/') }}">
                     <div class="logo-circle">
                         @if ($app_setting && $app_setting->logo)
-                            <img src="{{ asset('storage/' . $app_setting->logo) }}" alt="{{ $app_setting->site_name }}"
-                                style="max-height: 40px;">
+                            <img src="{{ asset('storage/' . $app_setting->logo) }}" alt="{{ $app_setting->site_name }}">
                         @else
                             <span class="brand-name brand-name-header">🍫</span>
                         @endif
