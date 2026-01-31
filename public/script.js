@@ -52,24 +52,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Hero Text Animations ---
+    // Set initial states for elements that should animate
+    gsap.set(".subheading", { opacity: 0, y: 30 });
+    gsap.set(".main-title", { opacity: 0, y: 50 });
+    gsap.set(".description", { opacity: 0, y: 30 });
+    gsap.set(".hero-btns .btn", { opacity: 0, y: 20 });
+
     const tl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.2 } });
 
-    tl.from(".subheading", {
-        y: 30,
-        opacity: 0,
+    tl.to(".subheading", {
+        y: 0,
+        opacity: 1,
         delay: 0.5
     })
-        .from(".main-title", {
-            y: 50,
-            opacity: 0,
+        .to(".main-title", {
+            y: 0,
+            opacity: 1,
         }, "-=0.8")
-        .from(".description", {
-            y: 30,
-            opacity: 0,
+        .to(".description", {
+            y: 0,
+            opacity: 1,
         }, "-=0.8")
-        .from(".hero-btns .btn", {
-            y: 20,
-            opacity: 0,
+        .to(".hero-btns .btn", {
+            y: 0,
+            opacity: 1,
             stagger: 0.2
         }, "-=0.8");
 
@@ -208,25 +214,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- About Section Animations ---
     const aboutSection = document.querySelector('.about-section');
     if (aboutSection) {
+        // Set initial states for elements that should animate
+        gsap.set(".about-visual .about-main-img", { opacity: 0, y: 50 });
+        gsap.set(".float-card", { opacity: 0, y: 30 });
+        gsap.set(".about-content > *", { opacity: 0, y: 30 });
+
         // Visual Animation
-        gsap.from(".about-visual .about-main-img", {
+        gsap.to(".about-visual .about-main-img", {
             scrollTrigger: {
                 trigger: ".about-section",
-                start: "top 70%",
+                start: "top 75%",
+                toggleActions: "play none none none",
+                once: true
             },
-            y: 50,
-            opacity: 0,
+            y: 0,
+            opacity: 1,
             duration: 1.2,
             ease: "power3.out"
         });
 
-        gsap.from(".float-card", {
+        gsap.to(".float-card", {
             scrollTrigger: {
                 trigger: ".about-section",
-                start: "top 60%",
+                start: "top 65%",
+                toggleActions: "play none none none",
+                once: true
             },
-            y: 30,
-            opacity: 0,
+            y: 0,
+            opacity: 1,
             duration: 0.8,
             stagger: 0.2,
             delay: 0.5,
@@ -234,13 +249,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Content Animation
-        gsap.from(".about-content > *", {
+        gsap.to(".about-content > *", {
             scrollTrigger: {
                 trigger: ".about-section",
-                start: "top 70%",
+                start: "top 75%",
+                toggleActions: "play none none none",
+                once: true
             },
-            y: 30,
-            opacity: 0,
+            y: 0,
+            opacity: 1,
             duration: 0.8,
             stagger: 0.1,
             ease: "power2.out"
@@ -250,18 +267,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const counters = document.querySelectorAll('.counter');
         counters.forEach(counter => {
             const target = +counter.getAttribute('data-target');
+            if (isNaN(target)) return;
 
             ScrollTrigger.create({
                 trigger: ".about-section",
-                start: "top 70%",
+                start: "top 75%",
                 onEnter: () => {
-                    gsap.to(counter, {
-                        innerHTML: target,
+                    const obj = { value: 0 };
+                    gsap.to(obj, {
+                        value: target,
                         duration: 2.5,
-                        snap: { innerHTML: 1 },
                         ease: "power1.out",
                         onUpdate: function () {
-                            counter.innerHTML = Math.ceil(this.targets()[0].innerHTML) + "+";
+                            counter.innerHTML = Math.ceil(obj.value) + "+";
                         }
                     });
                 },
@@ -338,4 +356,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Mobile Menu ---
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const navPill = document.querySelector('.nav-pill');
+    hamburgerBtn.addEventListener('click', () => {
+        document.body.classList.toggle('mobileMenuActive');
+    });
+
+    // Refresh ScrollTrigger after all content loads
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+    });
+
+    // Refresh ScrollTrigger on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 250);
+    });
 });

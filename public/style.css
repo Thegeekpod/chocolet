@@ -63,7 +63,8 @@ p {
 }
 
 .container {
-    max-width: 95%;
+    max-width: 90%;
+    width: 100%;
     margin: 0 auto;
     padding: 0 40px;
 }
@@ -99,7 +100,7 @@ header.scrolled {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     text-decoration: none;
     transition: var(--transition-smooth);
 
@@ -115,7 +116,7 @@ header.scrolled {
 .logo-circle .brand-name {
     color: var(--primary-green);
     font-weight: 800;
-    font-size: 0.8rem;
+    font-size: 4rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -123,7 +124,7 @@ header.scrolled {
 /* Nav Pill */
 .nav-pill {
     background: var(--white);
-    padding: 8px 30px;
+    padding: 8px 30px 12px;
     border-radius: 100px;
     box-shadow: var(--shadow-medium);
     margin-right: 20px;
@@ -160,8 +161,13 @@ header.scrolled {
     background: var(--primary-green);
 }
 
+.mobile-logo.footer-logo {
+    display: none;
+}
+
 /* Hamburger */
 .hamburger-btn {
+
     width: 50px;
     height: 50px;
     background: var(--white);
@@ -169,7 +175,7 @@ header.scrolled {
     border-radius: 50%;
     box-shadow: var(--shadow-medium);
     cursor: pointer;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
@@ -177,7 +183,7 @@ header.scrolled {
     transition: var(--transition-smooth);
 }
 
-.hamburger-btn:hover {
+.mobileMenuActive .hamburger-btn {
     background: var(--primary-green);
     color: var(--white);
     transform: rotate(90deg);
@@ -191,6 +197,7 @@ header.scrolled {
     align-items: center;
     background-color: var(--bg-light);
     padding-top: 100px;
+    /* overflow: hidden; */
 }
 
 .hero-grid {
@@ -230,8 +237,9 @@ header.scrolled {
 .hero-btns {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: flex-start;
 }
+
 
 .btn {
     padding: 18px 35px;
@@ -412,7 +420,7 @@ a {
     .hero-content {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         order: 2;
     }
 
@@ -421,18 +429,12 @@ a {
         height: 400px;
     }
 
-    .description {
-        margin-left: auto;
-        margin-right: auto;
-    }
 
     .main-title {
         font-size: 3.5rem;
     }
 
-    .nav-pill {
-        display: none;
-    }
+
 
     .swiper-main img {
         max-width: 300px;
@@ -692,9 +694,8 @@ a {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;
-    max-width: 1200px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -984,7 +985,6 @@ a {
    ========================================================================== */
 /* Products Carousel */
 .products-section {
-    padding: 80px 0;
     position: relative;
     overflow: hidden;
     /* Prevent body scroll from character pop-outs */
@@ -1015,6 +1015,7 @@ a {
 .section-header .section-title {
     position: relative;
     display: inline-block;
+    padding-bottom: 15px;
 }
 
 .section-header .section-title::after {
