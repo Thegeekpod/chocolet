@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{ asset('style.css') }}" />
     <link rel="stylesheet" href="{{ asset('pages.css') }}" />
+    <link rel="stylesheet" href="{{ asset('responsive.css') }}" />
     @yield('styles')
 </head>
 
@@ -26,9 +27,9 @@
                 <a href="{{ url('/') }}">
                     <div class="logo-circle">
                         @if ($app_setting && $app_setting->logo)
-                            <img src="{{ asset('storage/' . $app_setting->logo) }}" alt="{{ $app_setting->site_name }}">
+                        <img src="{{ asset('storage/' . $app_setting->logo) }}" alt="{{ $app_setting->site_name }}">
                         @else
-                            <span class="brand-name brand-name-header">🍫</span>
+                        <span class="brand-name brand-name-header">🍫</span>
                         @endif
                     </div>
                 </a>
@@ -37,6 +38,10 @@
 
 
             <nav class="nav-pill">
+                <div class="mobile-logo footer-logo">
+                    <span class="footer-logo-icon">🍫</span>
+                    <span class="footer-logo-text">Chocolet</span>
+                </div>
                 <ul>
                     <li><a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">HOME</a></li>
                     <li><a href="{{ url('/about') }}" class="{{ Request::is('about') ? 'active' : '' }}">ABOUT US</a>
@@ -71,11 +76,11 @@
                 <div class="footer-brand">
                     <div class="footer-logo">
                         @if ($app_setting && $app_setting->footer_logo)
-                            <img src="{{ asset('storage/' . $app_setting->footer_logo) }}"
-                                alt="{{ $app_setting->site_name }}" style="max-height: 50px;">
+                        <img src="{{ asset('storage/' . $app_setting->footer_logo) }}"
+                            alt="{{ $app_setting->site_name }}" style="max-height: 50px;">
                         @else
-                            <span class="footer-logo-icon">🍫</span>
-                            <span class="footer-logo-text">{{ $app_setting->site_name ?? 'Chocolet' }}</span>
+                        <span class="footer-logo-icon">🍫</span>
+                        <span class="footer-logo-text">{{ $app_setting->site_name ?? 'Chocolet' }}</span>
                         @endif
                     </div>
                     <p class="footer-tagline">
@@ -83,26 +88,26 @@
                     </p>
                     <div class="footer-social">
                         @if ($app_setting)
-                            @if ($app_setting->facebook_url)
-                                <a href="{{ $app_setting->facebook_url }}" class="social-icon" aria-label="Facebook"><i
-                                        class="fab fa-facebook-f"></i></a>
-                            @endif
-                            @if ($app_setting->instagram_url)
-                                <a href="{{ $app_setting->instagram_url }}" class="social-icon"
-                                    aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            @endif
-                            @if ($app_setting->twitter_url)
-                                <a href="{{ $app_setting->twitter_url }}" class="social-icon" aria-label="Twitter"><i
-                                        class="fab fa-twitter"></i></a>
-                            @endif
-                            @if ($app_setting->linkedin_url)
-                                <a href="{{ $app_setting->linkedin_url }}" class="social-icon" aria-label="LinkedIn"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                            @endif
-                            @if ($app_setting->youtube_url)
-                                <a href="{{ $app_setting->youtube_url }}" class="social-icon" aria-label="YouTube"><i
-                                        class="fab fa-youtube"></i></a>
-                            @endif
+                        @if ($app_setting->facebook_url)
+                        <a href="{{ $app_setting->facebook_url }}" class="social-icon" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if ($app_setting->instagram_url)
+                        <a href="{{ $app_setting->instagram_url }}" class="social-icon"
+                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        @endif
+                        @if ($app_setting->twitter_url)
+                        <a href="{{ $app_setting->twitter_url }}" class="social-icon" aria-label="Twitter"><i
+                                class="fab fa-twitter"></i></a>
+                        @endif
+                        @if ($app_setting->linkedin_url)
+                        <a href="{{ $app_setting->linkedin_url }}" class="social-icon" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        @endif
+                        @if ($app_setting->youtube_url)
+                        <a href="{{ $app_setting->youtube_url }}" class="social-icon" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                        @endif
                         @endif
                     </div>
                 </div>
@@ -124,7 +129,7 @@
                     <h4 class="footer-title">Categories</h4>
                     <ul class="footer-links">
                         @foreach ($app_categories as $cat)
-                            <li><a href="{{ url('/') }}#categories">{{ $cat->name }}</a></li>
+                        <li><a href="{{ url('/') }}#categories">{{ $cat->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
