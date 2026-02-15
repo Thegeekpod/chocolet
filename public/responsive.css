@@ -112,4 +112,12 @@
     .about-section {
         padding: 75px 0;
     }
+
+    .features-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .brand-display {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
