@@ -19,23 +19,46 @@
                     <form class="forms-sample" action="{{ route('admin.products.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Please fix the following errors:</strong>
+                                <ul class="mb-0 mt-2">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Product Name</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Name" required>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        id="name" name="name" value="{{ old('name') }}" placeholder="Name"
+                                        required>
+                                    @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="category_id">Category</label>
-                                    <select class="form-control" id="category_id" name="category_id" required>
+                                    <select class="form-control @error('category_id') is-invalid @enderror" id="category_id"
+                                        name="category_id" required>
                                         <option value="">Select Category</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}"
+                                                {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                                {{ $category->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('category_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -99,16 +122,21 @@
 
                         <div class="form-group">
                             <label>Image upload</label>
-                            <input type="file" name="image" class="file-upload-default" id="imageInput"
+                            <input type="file" name="image"
+                                class="file-upload-default @error('image') is-invalid @enderror" id="imageInput"
                                 style="display:none">
                             <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
+                                <input type="text"
+                                    class="form-control file-upload-info @error('image') is-invalid @enderror" disabled
                                     placeholder="Upload Image">
                                 <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-gradient-primary" type="button"
                                         onclick="document.getElementById('imageInput').click();">Upload</button>
                                 </span>
                             </div>
+                            @error('image')
+                                <div class="text-danger small mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-check form-check-flat form-check-primary">

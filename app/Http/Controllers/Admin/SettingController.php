@@ -21,8 +21,8 @@ class SettingController extends Controller
 
         $validated = $request->validate([
             'site_name' => 'required|string|max:255',
-            'logo' => 'nullable|image|max:2048',
-            'footer_logo' => 'nullable|image|max:2048',
+            'logo' => 'nullable|image',
+            'footer_logo' => 'nullable|image',
             'footer_text' => 'nullable|string',
             'contact_email' => 'nullable|email',
             'contact_phone' => 'nullable|string|max:20',
@@ -39,7 +39,7 @@ class SettingController extends Controller
             'about_title' => 'nullable|string',
             'about_description_1' => 'nullable|string',
             'about_description_2' => 'nullable|string',
-            'about_image' => 'nullable|image|max:2048',
+            'about_image' => 'nullable|image',
             'about_years' => 'nullable|string',
             'about_countries' => 'nullable|string',
             'stat_1_val' => 'nullable|string',
