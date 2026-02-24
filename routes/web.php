@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     $categories = \App\Models\Category::where('is_visible_on_home', true)->get();
@@ -27,6 +28,7 @@ Route::get('/gallery', function () {
 Route::get('/contact', function () {
     return view('frontend.contact');
 });
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::get('/product/{slug}', function ($slug) {
     $product = \App\Models\Product::where('slug', $slug)->firstOrFail();
@@ -52,4 +54,5 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
     Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'edit'])->name('settings.edit');
     Route::post('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+    Route::resource('contacts', \App\Http\Controllers\Admin\ContactInquiryController::class)->only(['index', 'show', 'destroy']);
 });

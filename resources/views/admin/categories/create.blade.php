@@ -44,6 +44,11 @@
                                 <input type="checkbox" class="form-check-input" name="is_visible_on_home" value="1">
                                 Visible on Home Page <i class="input-helper"></i></label>
                         </div>
+                        <div class="form-check form-check-flat form-check-primary mt-3">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="show_in_footer" value="1">
+                                Show in Footer <i class="input-helper"></i></label>
+                        </div>
                         <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
                         <a href="{{ route('admin.categories.index') }}" class="btn btn-light">Cancel</a>
                     </form>

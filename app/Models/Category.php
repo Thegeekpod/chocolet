@@ -11,5 +11,6 @@ class Category extends Model
         'slug',
         'image',
         'is_visible_on_home',
+        'show_in_footer',
     ];
 }

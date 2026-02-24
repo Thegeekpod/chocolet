@@ -27,11 +27,13 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'image' => 'nullable|image',
             'is_visible_on_home' => 'nullable|boolean',
+            'show_in_footer' => 'nullable|boolean',
         ]);
 
 
         $validated['slug'] = Str::slug($request->name);
         $validated['is_visible_on_home'] = $request->has('is_visible_on_home');
+        $validated['show_in_footer'] = $request->has('show_in_footer');
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('categories', 'public');
@@ -54,11 +56,13 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'image' => 'nullable|image',
             'is_visible_on_home' => 'nullable|boolean',
+            'show_in_footer' => 'nullable|boolean',
         ]);
 
 
         $validated['slug'] = Str::slug($request->name);
         $validated['is_visible_on_home'] = $request->has('is_visible_on_home');
+        $validated['show_in_footer'] = $request->has('show_in_footer');
 
         if ($request->hasFile('image')) {
             if ($category->image) {

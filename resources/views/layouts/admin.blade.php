@@ -88,7 +88,18 @@
                             <i class="mdi mdi-settings menu-icon"></i>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.contacts.index') }}">
+                            <span class="menu-title">
+                                Contact Inquiries
+                                @php $unread = \App\Models\ContactInquiry::where('is_read', false)->count(); @endphp
+                                @if ($unread > 0)
+                                    <span class="badge badge-danger ms-1">{{ $unread }}</span>
+                                @endif
+                            </span>
+                            <i class="mdi mdi-email-outline menu-icon"></i>
+                        </a>
+                    </li>
 
                 </ul>
             </nav>

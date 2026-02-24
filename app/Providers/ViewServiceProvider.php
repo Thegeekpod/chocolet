@@ -27,8 +27,13 @@ class ViewServiceProvider extends ServiceProvider
                 ? \App\Models\Category::where('is_visible_on_home', true)->get()
                 : collect();
 
+            $footer_categories = \Illuminate\Support\Facades\Schema::hasTable('categories')
+                ? \App\Models\Category::where('show_in_footer', true)->get()
+                : collect();
+
             $view->with('app_setting', $setting);
             $view->with('app_categories', $categories);
+            $view->with('footer_categories', $footer_categories);
         });
     }
 }
