@@ -48,7 +48,16 @@ Route::post('/admin/logout', [AuthController::class, 'logout'])->name('logout');
 // Protected Admin Routes
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
-        return view('admin.dashboard');
+        $totalCategories   = \App\Models\Category::count();
+        $totalProducts     = \App\Models\Product::count();
+        $totalInquiries    = \App\Models\ContactInquiry::count();
+        $unreadInquiries   = \App\Models\ContactInquiry::where('is_read', false)->count();
+        return view('admin.dashboard', compact(
+            'totalCategories',
+            'totalProducts',
+            'totalInquiries',
+            'unreadInquiries'
+        ));
     });
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);

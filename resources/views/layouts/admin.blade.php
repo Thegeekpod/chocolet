@@ -85,7 +85,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.settings.edit') }}">
                             <span class="menu-title">Site Settings</span>
-                            <i class="mdi mdi-settings menu-icon"></i>
+                            <i class="mdi mdi-cog menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
