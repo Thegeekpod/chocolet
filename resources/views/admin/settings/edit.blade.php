@@ -72,7 +72,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Header Logo</label>
+                                            <label>Header Logo <span class="text-muted small">(120×70 px)</span></label>
                                             <input type="file" name="logo" class="form-control">
                                             @if ($setting->logo)
                                                 <img src="{{ asset('storage/' . $setting->logo) }}" class="preview-img">
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Footer Logo</label>
+                                            <label>Footer Logo <span class="text-muted small">(200×50 px)</span></label>
                                             <input type="file" name="footer_logo" class="form-control">
                                             @if ($setting->footer_logo)
                                                 <img src="{{ asset('storage/' . $setting->footer_logo) }}"
@@ -154,7 +154,8 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Background Image</label>
+                                                            <label>Background Image <span class="text-muted small">(800×600
+                                                                    px)</span></label>
                                                             <input type="file"
                                                                 name="hero_slides_files[{{ $index }}][bg]"
                                                                 class="form-control">
@@ -167,7 +168,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Product Image</label>
+                                                            <label>Product Image <span class="text-muted small">(450×450
+                                                                    px)</span></label>
                                                             <input type="file"
                                                                 name="hero_slides_files[{{ $index }}][prod]"
                                                                 class="form-control">
@@ -210,7 +212,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>About Image</label>
+                                            <label>About Image <span class="text-muted small">(400×500 px)</span></label>
                                             <input type="file" name="about_image" class="form-control">
                                             @if ($setting->about_image)
                                                 <img src="{{ asset('storage/' . $setting->about_image) }}"
@@ -284,7 +286,8 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>BG Image</label>
+                                                            <label>BG Image <span class="text-muted small">(400×390
+                                                                    px)</span></label>
                                                             <input type="file"
                                                                 name="feat_files[{{ $index }}][bg]"
                                                                 class="form-control">
@@ -296,7 +299,8 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>Logo Image</label>
+                                                            <label>Logo Image <span class="text-muted small">(280×80
+                                                                    px)</span></label>
                                                             <input type="file"
                                                                 name="feat_files[{{ $index }}][logo]"
                                                                 class="form-control">
@@ -308,7 +312,8 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>Product Image</label>
+                                                            <label>Product Image <span class="text-muted small">(130×130
+                                                                    px)</span></label>
                                                             <input type="file"
                                                                 name="feat_files[{{ $index }}][prod]"
                                                                 class="form-control">
@@ -345,7 +350,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Main Image</label>
+                                                            <label>Main Image <span class="text-muted small">(600×360
+                                                                    px)</span></label>
                                                             <input type="file"
                                                                 name="brand_main_files[{{ $loop->index }}]"
                                                                 class="form-control">
@@ -376,7 +382,9 @@
                                                     </div>
                                                 </div>
 
-                                                <h6>Logo Grid (Max 5)</h6>
+                                                <h6>Logo Grid (Max 5) <span class="text-muted small"
+                                                        style="font-weight:normal;font-size:0.8rem;">(200×200 px
+                                                        each)</span></h6>
                                                 <div class="row">
                                                     @for ($l = 0; $l < 5; $l++)
                                                         <div class="col-md-2">
@@ -463,13 +471,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Background Image</label>
+                            <label>Background Image <span class="text-muted small">(800×600 px)</span></label>
                             <input type="file" name="hero_slides_files[${heroIndex}][bg]" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Product Image</label>
+                            <label>Product Image <span class="text-muted small">(450×450 px)</span></label>
                             <input type="file" name="hero_slides_files[${heroIndex}][prod]" class="form-control" required>
                         </div>
                     </div>
@@ -485,13 +493,13 @@
                 <button type="button" class="btn btn-danger btn-sm remove-btn" onclick="this.parentElement.remove()">Remove</button>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="form-group"><label>BG Image</label><input type="file" name="feat_files[${featIndex}][bg]" class="form-control" required></div>
+                        <div class="form-group"><label>BG Image <span class="text-muted small">(400×390 px)</span></label><input type="file" name="feat_files[${featIndex}][bg]" class="form-control" required></div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group"><label>Logo Image</label><input type="file" name="feat_files[${featIndex}][logo]" class="form-control" required></div>
+                        <div class="form-group"><label>Logo Image <span class="text-muted small">(280×80 px)</span></label><input type="file" name="feat_files[${featIndex}][logo]" class="form-control" required></div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group"><label>Product Image</label><input type="file" name="feat_files[${featIndex}][prod]" class="form-control" required></div>
+                        <div class="form-group"><label>Product Image <span class="text-muted small">(130×130 px)</span></label><input type="file" name="feat_files[${featIndex}][prod]" class="form-control" required></div>
                     </div>
                 </div>
             </div>`;
@@ -510,7 +518,7 @@
                 <button type="button" class="btn btn-danger btn-sm remove-btn" onclick="this.parentElement.remove()">Remove</button>
                 <div class="row">
                     <div class="col-md-6"><div class="form-group"><label>Title</label><input type="text" name="brands[${brandIndex}][title]" class="form-control" required></div></div>
-                    <div class="col-md-6"><div class="form-group"><label>Main Image</label><input type="file" name="brand_main_files[${brandIndex}]" class="form-control" required></div></div>
+                    <div class="col-md-6"><div class="form-group"><label>Main Image <span class="text-muted small">(600×360 px)</span></label><input type="file" name="brand_main_files[${brandIndex}]" class="form-control" required></div></div>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
@@ -520,7 +528,7 @@
                         <div class="form-group"><label>Custom Link</label><input type="text" name="brands[${brandIndex}][link]" class="form-control" placeholder="/products"></div>
                     </div>
                 </div>
-                <h6>Logo Grid (Max 5)</h6>
+                <h6>Logo Grid (Max 5) <span class="text-muted small" style="font-weight:normal;font-size:0.8rem;">(200×200 px each)</span></h6>
                 <div class="row">${logosHtml}</div>
             </div>`;
             document.getElementById('brands-container').insertAdjacentHTML('beforeend', html);

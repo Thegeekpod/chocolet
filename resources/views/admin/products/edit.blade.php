@@ -114,7 +114,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Image upload</label>
+                            <label>Image upload <span class="text-muted small">(500×600 px, transparent PNG)</span></label>
                             <input type="file" name="image" class="file-upload-default" id="imageInput"
                                 style="display:none">
                             <div class="input-group col-xs-12">
