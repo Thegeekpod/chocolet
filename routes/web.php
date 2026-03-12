@@ -18,7 +18,8 @@ Route::get('/about', function () {
 });
 
 Route::get('/products', function () {
-    return view('frontend.products');
+    $products = \App\Models\Product::all();
+    return view('frontend.products', compact('products'));
 });
 
 Route::get('/gallery', function () {

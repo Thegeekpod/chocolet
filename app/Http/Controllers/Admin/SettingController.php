@@ -68,17 +68,21 @@ class SettingController extends Controller
 
         // 2. Hero Slides
         $heroSlides = [];
-        if ($request->has('hero_slides')) {
-            foreach ($request->hero_slides as $i => $slide) {
-                $bg = $slide['bg'] ?? '';
-                $prod = $slide['prod'] ?? '';
+        $slidesData = $request->input('hero_slides', []);
+        $slidesFiles = $request->file('hero_slides_files', []);
+        $slideIndices = array_unique(array_merge(array_keys($slidesData), array_keys($slidesFiles)));
 
-                if ($request->hasFile("hero_slides_files.$i.bg")) {
-                    $bg = $request->file("hero_slides_files.$i.bg")->store('home', 'public');
-                }
-                if ($request->hasFile("hero_slides_files.$i.prod")) {
-                    $prod = $request->file("hero_slides_files.$i.prod")->store('home', 'public');
-                }
+        foreach ($slideIndices as $i) {
+            $bg = $slidesData[$i]['bg'] ?? '';
+            $prod = $slidesData[$i]['prod'] ?? '';
+
+            if ($request->hasFile("hero_slides_files.$i.bg")) {
+                $bg = $request->file("hero_slides_files.$i.bg")->store('home', 'public');
+            }
+            if ($request->hasFile("hero_slides_files.$i.prod")) {
+                $prod = $request->file("hero_slides_files.$i.prod")->store('home', 'public');
+            }
+            if ($bg || $prod) {
                 $heroSlides[] = ['bg' => $bg, 'prod' => $prod];
             }
         }
@@ -86,16 +90,21 @@ class SettingController extends Controller
 
         // 3. Featured Products
         $featuredItems = [];
-        if ($request->has('feat')) {
-            foreach ($request->feat as $i => $item) {
-                $bg = $item['bg'] ?? '';
-                $logo = $item['logo'] ?? '';
-                $prod = $item['prod'] ?? '';
+        $featData = $request->input('feat', []);
+        $featFiles = $request->file('feat_files', []);
+        $featIndices = array_unique(array_merge(array_keys($featData), array_keys($featFiles)));
 
-                if ($request->hasFile("feat_files.$i.bg")) $bg = $request->file("feat_files.$i.bg")->store('home', 'public');
-                if ($request->hasFile("feat_files.$i.logo")) $logo = $request->file("feat_files.$i.logo")->store('home', 'public');
-                if ($request->hasFile("feat_files.$i.prod")) $prod = $request->file("feat_files.$i.prod")->store('home', 'public');
+        foreach ($featIndices as $i) {
+            $item = $featData[$i] ?? [];
+            $bg = $item['bg'] ?? '';
+            $logo = $item['logo'] ?? '';
+            $prod = $item['prod'] ?? '';
 
+            if ($request->hasFile("feat_files.$i.bg")) $bg = $request->file("feat_files.$i.bg")->store('home', 'public');
+            if ($request->hasFile("feat_files.$i.logo")) $logo = $request->file("feat_files.$i.logo")->store('home', 'public');
+            if ($request->hasFile("feat_files.$i.prod")) $prod = $request->file("feat_files.$i.prod")->store('home', 'public');
+
+            if ($bg || $logo || $prod) {
                 $featuredItems[] = ['bg' => $bg, 'logo' => $logo, 'prod' => $prod];
             }
         }
