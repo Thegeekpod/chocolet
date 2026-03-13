@@ -55,7 +55,7 @@
                     <p class="product-single-description">
                         {{ $product->description }}
                     </p>
-                    <hr />
+                    <hr style="{{ $product->long_description ? '' : 'margin-bottom: 30px;' }}" />
                     <div class="product-long-description mt-4">
                         {!! $product->long_description !!}
                     </div>
