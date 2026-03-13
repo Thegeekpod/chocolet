@@ -51,7 +51,8 @@
                         @if ($app_setting && $app_setting->logo)
                             <img src="{{ asset('storage/' . $app_setting->logo) }}" alt="{{ $app_setting->site_name }}">
                         @else
-                            <span class="brand-name brand-name-header">🍫</span>
+                            <h2 class="brand-name brand-name-header" style="font-size: 2rem; margin: 0;">
+                                {{ $app_setting->site_name ?? 'Chocolet' }}</h2>
                         @endif
                     </div>
                 </a>
@@ -61,8 +62,16 @@
 
             <nav class="nav-pill">
                 <div class="mobile-logo footer-logo">
-                    <span class="footer-logo-icon">🍫</span>
-                    <span class="footer-logo-text">Chocolet</span>
+                    <a href="{{ url('/') }}"
+                        style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                        @if ($app_setting && $app_setting->logo)
+                            <img src="{{ asset('storage/' . $app_setting->logo) }}"
+                                alt="{{ $app_setting->site_name }}" style="max-height: 40px;">
+                        @else
+                            <span class="footer-logo-icon">🍫</span>
+                            <span class="footer-logo-text">{{ $app_setting->site_name ?? 'Chocolet' }}</span>
+                        @endif
+                    </a>
                 </div>
                 <ul>
                     <li><a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">HOME</a></li>
@@ -97,8 +106,8 @@
                 <!-- Brand Column -->
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        @if ($app_setting && $app_setting->footer_logo)
-                            <img src="{{ asset('storage/' . $app_setting->footer_logo) }}"
+                        @if ($app_setting && ($app_setting->footer_logo || $app_setting->logo))
+                            <img src="{{ asset('storage/' . ($app_setting->footer_logo ?? $app_setting->logo)) }}"
                                 alt="{{ $app_setting->site_name }}" style="max-height: 50px;">
                         @else
                             <span class="footer-logo-icon">🍫</span>
