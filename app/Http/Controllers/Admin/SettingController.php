@@ -44,12 +44,20 @@ class SettingController extends Controller
             'about_countries' => 'nullable|string',
             'stat_1_val' => 'nullable|string',
             'stat_1_text' => 'nullable|string',
+            'stat_1_link' => 'nullable|string',
             'stat_2_val' => 'nullable|string',
             'stat_2_text' => 'nullable|string',
+            'stat_2_link' => 'nullable|string',
             'stat_3_val' => 'nullable|string',
             'stat_3_text' => 'nullable|string',
+            'stat_3_link' => 'nullable|string',
             'featured_products_title' => 'nullable|string',
             'why_title' => 'nullable|string',
+            'global_meta_title' => 'nullable|string',
+            'global_meta_description' => 'nullable|string',
+            'head_scripts' => 'nullable|string',
+            'body_scripts' => 'nullable|string',
+            'footer_scripts' => 'nullable|string',
         ]);
 
         // 1. Static Files
@@ -99,13 +107,14 @@ class SettingController extends Controller
             $bg = $item['bg'] ?? '';
             $logo = $item['logo'] ?? '';
             $prod = $item['prod'] ?? '';
+            $link = $item['link'] ?? '#';
 
             if ($request->hasFile("feat_files.$i.bg")) $bg = $request->file("feat_files.$i.bg")->store('home', 'public');
             if ($request->hasFile("feat_files.$i.logo")) $logo = $request->file("feat_files.$i.logo")->store('home', 'public');
             if ($request->hasFile("feat_files.$i.prod")) $prod = $request->file("feat_files.$i.prod")->store('home', 'public');
 
             if ($bg || $logo || $prod) {
-                $featuredItems[] = ['bg' => $bg, 'logo' => $logo, 'prod' => $prod];
+                $featuredItems[] = ['bg' => $bg, 'logo' => $logo, 'prod' => $prod, 'link' => $link];
             }
         }
         $validated['featured_products_json'] = $featuredItems;

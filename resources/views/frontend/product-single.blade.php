@@ -6,9 +6,46 @@
     <section class="product-single-section">
         <div class="container">
             <div class="product-single-grid">
-                <!-- Product Image -->
-                <div class="product-image-display">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="main-img">
+                <!-- Product Image & Gallery -->
+                <div class="product-visual-column">
+                    <div class="swiper product-main-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="product-image-display">
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                                        class="main-img">
+                                </div>
+                            </div>
+                            @if ($product->gallery)
+                                @foreach ($product->gallery as $img)
+                                    <div class="swiper-slide">
+                                        <div class="product-image-display">
+                                            <img src="{{ asset('storage/' . $img) }}" alt="Gallery Image" class="main-img">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+
+                    @if ($product->gallery && count($product->gallery) > 0)
+                        <div class="swiper product-thumbs-swiper mt-3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="gallery-item-thumb">
+                                        <img src="{{ asset('storage/' . $product->image) }}" alt="Main image thumb">
+                                    </div>
+                                </div>
+                                @foreach ($product->gallery as $img)
+                                    <div class="swiper-slide">
+                                        <div class="gallery-item-thumb">
+                                            <img src="{{ asset('storage/' . $img) }}" alt="Gallery image thumb">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Product info -->
@@ -18,27 +55,12 @@
                     <p class="product-single-description">
                         {{ $product->description }}
                     </p>
-
-                    <div class="product-spec-grid">
-                        <div class="spec-item">
-                            <h4>Weight</h4>
-                            <p>{{ $product->weight }}</p>
-                        </div>
-                        <div class="spec-item">
-                            <h4>Ingredients</h4>
-                            <p>{{ $product->ingredients }}</p>
-                        </div>
-                        <div class="spec-item">
-                            <h4>Shelf Life</h4>
-                            <p>{{ $product->shelf_life }}</p>
-                        </div>
-                        <div class="spec-item">
-                            <h4>Storage</h4>
-                            <p>{{ $product->storage }}</p>
-                        </div>
+                    <hr />
+                    <div class="product-long-description mt-4">
+                        {!! $product->long_description !!}
                     </div>
 
-                    <div class="product-actions">
+                    <div class="product-actions mt-5">
                         <a href="{{ url('/contact') }}" class="btn btn-primary">
                             Inquiry Now <i class="fas fa-paper-plane"></i>
                         </a>
@@ -74,4 +96,28 @@
             </div>
         </section>
     @endif
+@endsection
+
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var thumbsSwiper = new Swiper(".product-thumbs-swiper", {
+                spaceBetween: 10,
+                slidesPerView: 4,
+                freeMode: true,
+                watchSlidesProgress: true,
+            });
+
+            var mainSwiper = new Swiper(".product-main-swiper", {
+                spaceBetween: 10,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                thumbs: {
+                    swiper: thumbsSwiper,
+                },
+            });
+        });
+    </script>
 @endsection

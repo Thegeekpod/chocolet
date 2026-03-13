@@ -67,19 +67,17 @@
 
 
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Short Description</label>
                             <textarea class="form-control" id="description" name="description" rows="4">{{ $product->description }}</textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label for="long_description">Long Description</label>
+                            <textarea class="form-control" id="long_description" name="long_description" rows="10">{{ $product->long_description }}</textarea>
+                        </div>
+
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="weight">Weight Options</label>
-                                    <input type="text" class="form-control" id="weight" name="weight"
-                                        value="{{ $product->weight }}" placeholder="e.g. 100g / 250g">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="features">Features (comma separated)</label>
                                     <input type="text" class="form-control" id="features" name="features"
@@ -89,37 +87,14 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="shelf_life">Shelf Life</label>
-                                    <input type="text" class="form-control" id="shelf_life" name="shelf_life"
-                                        value="{{ $product->shelf_life }}" placeholder="12 Months">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="storage">Storage</label>
-                                    <input type="text" class="form-control" id="storage" name="storage"
-                                        value="{{ $product->storage }}" placeholder="Cool & Dry Place">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="ingredients">Ingredients</label>
-                                    <input type="text" class="form-control" id="ingredients" name="ingredients"
-                                        value="{{ $product->ingredients }}" placeholder="Cocoa Mass, Sugar">
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group">
-                            <label>Image upload <span class="text-muted small">(500×600 px, transparent PNG)</span></label>
+                            <label>Main Image upload <span class="text-muted small">(500×600 px, transparent
+                                    PNG)</span></label>
                             <input type="file" name="image" class="file-upload-default" id="imageInput"
                                 style="display:none">
                             <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="Upload Image">
+                                    placeholder="Upload Main Image">
                                 <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-gradient-primary" type="button"
                                         onclick="document.getElementById('imageInput').click();">Upload</button>
@@ -129,7 +104,48 @@
                                 <div class="mt-2">
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="current image"
                                         style="width: 100px; border-radius: 10px;">
-                                    <p class="text-muted small">Current Image</p>
+                                    <p class="text-muted small">Current Main Image</p>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label>Product Gallery <span class="text-muted small">(Multiple images)</span></label>
+                            <input type="file" name="gallery[]"
+                                class="file-upload-default @error('gallery.*') is-invalid @enderror" id="galleryInput"
+                                style="display:none" multiple>
+                            <div class="input-group col-xs-12">
+                                <input type="text"
+                                    class="form-control file-upload-info @error('gallery.*') is-invalid @enderror" disabled
+                                    placeholder="Upload Gallery Images">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-gradient-primary" type="button"
+                                        onclick="document.getElementById('galleryInput').click();">Upload</button>
+                                </span>
+                            </div>
+                            @error('gallery.*')
+                                <div class="text-danger small mt-1">{{ $message }}</div>
+                            @enderror
+
+                            @if ($product->gallery && count($product->gallery) > 0)
+                                <div class="mt-3">
+                                    <label>Current Gallery (Check to remove)</label>
+                                    <div class="row">
+                                        @foreach ($product->gallery as $img)
+                                            <div class="col-md-2 mb-3 text-center">
+                                                <img src="{{ asset('storage/' . $img) }}"
+                                                    style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px;"
+                                                    class="mb-1">
+                                                <div class="form-check form-check-danger" style="display: inline-block;">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" name="remove_gallery_images[]"
+                                                            value="{{ $img }}" class="form-check-input"> Remove
+                                                        <i class="input-helper"></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             @endif
                         </div>
@@ -151,9 +167,25 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
     <script>
+        ClassicEditor
+            .create(document.querySelector('#long_description'))
+            .catch(error => {
+                console.error(error);
+            });
+
         document.getElementById('imageInput').onchange = function() {
             this.parentElement.querySelector('.file-upload-info').value = this.files[0].name;
+        };
+
+        document.getElementById('galleryInput').onchange = function() {
+            let files = this.files;
+            let fileNames = [];
+            for (let i = 0; i < files.length; i++) {
+                fileNames.push(files[i].name);
+            }
+            this.parentElement.querySelector('.file-upload-info').value = fileNames.join(', ');
         };
     </script>
 @endsection

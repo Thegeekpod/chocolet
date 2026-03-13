@@ -12,18 +12,17 @@ class Product extends Model
         'category_id',
         'tagline',
         'description',
+        'long_description',
         'image',
+        'gallery',
         'features',
-        'weight',
-        'ingredients',
-        'shelf_life',
-        'storage',
         'is_visible_on_home',
     ];
 
 
     protected $casts = [
         'features' => 'array',
+        'gallery' => 'array',
         'is_visible_on_home' => 'boolean',
     ];
 

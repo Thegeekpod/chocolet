@@ -95,18 +95,18 @@
                 </p>
 
                 <div class="stats-grid">
-                    <div class="stat-item">
+                    <a href="{{ $app_setting->stat_1_link ?? '#' }}" class="stat-item">
                         <h4 class="counter" data-target="{{ $app_setting->stat_1_val ?? '100' }}">0</h4>
                         <p>{{ $app_setting->stat_1_text ?? 'Premium Products' }}</p>
-                    </div>
-                    <div class="stat-item">
+                    </a>
+                    <a href="{{ $app_setting->stat_2_link ?? '#' }}" class="stat-item">
                         <h4 class="counter" data-target="{{ $app_setting->stat_2_val ?? '50' }}">0</h4>
                         <p>{{ $app_setting->stat_2_text ?? 'Global Export' }}</p>
-                    </div>
-                    <div class="stat-item">
+                    </a>
+                    <a href="{{ $app_setting->stat_3_link ?? '#' }}" class="stat-item">
                         <h4 class="counter" data-target="{{ $app_setting->stat_3_val ?? '1000' }}">0</h4>
                         <p>{{ $app_setting->stat_3_text ?? 'Happy Clients' }}</p>
-                    </div>
+                    </a>
                 </div>
 
                 <a href="{{ url('/about') }}" class="btn btn-primary btn-mt-40">
@@ -135,7 +135,7 @@
                         @for ($i = 0; $i < $iterations; $i++)
                             @foreach ($featuredItems as $item)
                                 <div class="swiper-slide">
-                                    <a href="{{ url('/products') }}">
+                                    <a href="{{ $item['link'] ?? '#' }}">
                                         <div class="product-card">
                                             <div class="wrapper">
                                                 <img loading="lazy" src="{{ asset('storage/' . ($item['bg'] ?? '')) }}"
@@ -166,7 +166,7 @@
 
             <div class="categories-grid">
                 @foreach ($categories as $category)
-                    <div class="category-card">
+                    <a href="{{ url('/category/' . $category->slug) }}" class="category-card">
                         <div class="category-bg category-bg-img"
                             style="background-image: url('{{ asset('storage/' . $category->image) }}');">
                         </div>
@@ -178,7 +178,7 @@
 
                             <span class="category-btn">View Collection <i class="fas fa-arrow-right"></i></span>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
 

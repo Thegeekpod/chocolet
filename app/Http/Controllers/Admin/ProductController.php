@@ -31,12 +31,10 @@ class ProductController extends Controller
                 'category_id' => 'required|exists:categories,id',
                 'tagline' => 'nullable|string|max:255',
                 'description' => 'nullable|string',
+                'long_description' => 'nullable|string',
                 'image' => 'nullable|image',
+                'gallery.*' => 'nullable|image',
                 'features' => 'nullable|string', // comma separated
-                'weight' => 'nullable|string',
-                'ingredients' => 'nullable|string',
-                'shelf_life' => 'nullable|string',
-                'storage' => 'nullable|string',
                 'is_visible_on_home' => 'nullable|boolean',
             ]);
 
@@ -50,6 +48,14 @@ class ProductController extends Controller
             if ($request->hasFile('image')) {
                 $path = $request->file('image')->store('products', 'public');
                 $validated['image'] = $path;
+            }
+
+            if ($request->hasFile('gallery')) {
+                $galleryPaths = [];
+                foreach ($request->file('gallery') as $file) {
+                    $galleryPaths[] = $file->store('products/gallery', 'public');
+                }
+                $validated['gallery'] = $galleryPaths;
             }
 
             Product::create($validated);
@@ -74,13 +80,12 @@ class ProductController extends Controller
                 'category_id' => 'required|exists:categories,id',
                 'tagline' => 'nullable|string|max:255',
                 'description' => 'nullable|string',
+                'long_description' => 'nullable|string',
                 'image' => 'nullable|image',
+                'gallery.*' => 'nullable|image',
                 'features' => 'nullable|string',
-                'weight' => 'nullable|string',
-                'ingredients' => 'nullable|string',
-                'shelf_life' => 'nullable|string',
-                'storage' => 'nullable|string',
                 'is_visible_on_home' => 'nullable|boolean',
+                'remove_gallery_images' => 'nullable|array',
             ]);
 
             $validated['slug'] = Str::slug($request->name);
@@ -98,6 +103,28 @@ class ProductController extends Controller
                 $validated['image'] = $path;
             }
 
+            $currentGallery = $product->gallery ?? [];
+
+            // Handle removal of gallery images
+            if ($request->remove_gallery_images) {
+                foreach ($request->remove_gallery_images as $imagePath) {
+                    if (Storage::disk('public')->exists($imagePath)) {
+                        Storage::disk('public')->delete($imagePath);
+                    }
+                    $currentGallery = array_values(array_filter($currentGallery, function ($item) use ($imagePath) {
+                        return $item !== $imagePath;
+                    }));
+                }
+            }
+
+            // Handle new gallery uploads
+            if ($request->hasFile('gallery')) {
+                foreach ($request->file('gallery') as $file) {
+                    $currentGallery[] = $file->store('products/gallery', 'public');
+                }
+            }
+            $validated['gallery'] = $currentGallery;
+
             $product->update($validated);
 
             return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
@@ -111,6 +138,15 @@ class ProductController extends Controller
         if ($product->image) {
             Storage::disk('public')->delete($product->image);
         }
+
+        if ($product->gallery) {
+            foreach ($product->gallery as $imagePath) {
+                if (Storage::disk('public')->exists($imagePath)) {
+                    Storage::disk('public')->delete($imagePath);
+                }
+            }
+        }
+
         $product->delete();
 
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');

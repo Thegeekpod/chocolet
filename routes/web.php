@@ -11,8 +11,6 @@ Route::get('/', function () {
     return view('frontend.index', compact('categories', 'products'));
 });
 
-
-
 Route::get('/about', function () {
     return view('frontend.about');
 });
@@ -23,7 +21,8 @@ Route::get('/products', function () {
 });
 
 Route::get('/gallery', function () {
-    return view('frontend.gallery');
+    $images = \App\Models\Gallery::where('is_visible', true)->latest()->get();
+    return view('frontend.gallery', compact('images'));
 });
 
 Route::get('/contact', function () {
@@ -38,6 +37,12 @@ Route::get('/product/{slug}', function ($slug) {
         ->limit(3)
         ->get();
     return view('frontend.product-single', compact('product', 'relatedProducts'));
+});
+
+Route::get('/category/{slug}', function ($slug) {
+    $category = \App\Models\Category::where('slug', $slug)->firstOrFail();
+    $products = $category->products;
+    return view('frontend.category', compact('category', 'products'));
 });
 
 
@@ -62,7 +67,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     });
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+    Route::resource('gallery', \App\Http\Controllers\Admin\GalleryController::class);
     Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'edit'])->name('settings.edit');
     Route::post('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+    Route::resource('seo', \App\Http\Controllers\Admin\SeoController::class);
     Route::resource('contacts', \App\Http\Controllers\Admin\ContactInquiryController::class)->only(['index', 'show', 'destroy']);
 });

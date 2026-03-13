@@ -83,9 +83,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.gallery.index') }}">
+                            <span class="menu-title">Gallery</span>
+                            <i class="mdi mdi-image menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.settings.edit') }}">
                             <span class="menu-title">Site Settings</span>
                             <i class="mdi mdi-cog menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.seo.index') }}">
+                            <span class="menu-title">SEO Settings</span>
+                            <i class="mdi mdi-earth menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">

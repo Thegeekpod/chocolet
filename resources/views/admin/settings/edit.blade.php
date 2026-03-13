@@ -51,6 +51,8 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#brands">Brands</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#why">Why Choose Us</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#global_scripts">Global Scripts
+                                & SEO</a></li>
                     </ul>
 
                     <form class="forms-sample mt-4" action="{{ route('admin.settings.update') }}" method="POST"
@@ -236,39 +238,54 @@
                             <!-- Stats Tab -->
                             <div class="tab-pane fade" id="stats" role="tabpanel">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group"><label>Stat 1 Val</label><input type="text"
                                                 class="form-control" name="stat_1_val"
                                                 value="{{ $setting->stat_1_val }}"></div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-5">
                                         <div class="form-group"><label>Stat 1 Text</label><input type="text"
                                                 class="form-control" name="stat_1_text"
                                                 value="{{ $setting->stat_1_text }}"></div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"><label>Stat 1 Link</label><input type="text"
+                                                class="form-control" name="stat_1_link"
+                                                value="{{ $setting->stat_1_link }}"></div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group"><label>Stat 2 Val</label><input type="text"
                                                 class="form-control" name="stat_2_val"
                                                 value="{{ $setting->stat_2_val }}"></div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-5">
                                         <div class="form-group"><label>Stat 2 Text</label><input type="text"
                                                 class="form-control" name="stat_2_text"
                                                 value="{{ $setting->stat_2_text }}"></div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"><label>Stat 2 Link</label><input type="text"
+                                                class="form-control" name="stat_2_link"
+                                                value="{{ $setting->stat_2_link }}"></div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group"><label>Stat 3 Val</label><input type="text"
                                                 class="form-control" name="stat_3_val"
                                                 value="{{ $setting->stat_3_val }}"></div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-5">
                                         <div class="form-group"><label>Stat 3 Text</label><input type="text"
                                                 class="form-control" name="stat_3_text"
                                                 value="{{ $setting->stat_3_text }}"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"><label>Stat 3 Link</label><input type="text"
+                                                class="form-control" name="stat_3_link"
+                                                value="{{ $setting->stat_3_link }}"></div>
                                     </div>
                                 </div>
                                 <hr>
@@ -321,6 +338,15 @@
                                                                 value="{{ $item['prod'] }}">
                                                             <img src="{{ asset('storage/' . $item['prod']) }}"
                                                                 class="preview-img">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Link</label>
+                                                            <input type="text" name="feat[{{ $index }}][link]"
+                                                                class="form-control" value="{{ $item['link'] ?? '#' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -447,6 +473,35 @@
                                 <button type="button" class="btn btn-info btn-sm" onclick="addWhyFeature()">+ Add
                                     Feature</button>
                             </div>
+
+                            <!-- Global Scripts Tab -->
+                            <div class="tab-pane fade" id="global_scripts" role="tabpanel">
+                                <div class="form-group">
+                                    <label>Global Meta Title (Fallback)</label>
+                                    <input type="text" class="form-control" name="global_meta_title"
+                                        value="{{ $setting->global_meta_title }}">
+                                    <small class="text-muted">Used if page-specific SEO is not set.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Global Meta Description (Fallback)</label>
+                                    <textarea class="form-control" name="global_meta_description" rows="3">{{ $setting->global_meta_description }}</textarea>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label>Head Scripts (e.g. Analytics, Pixel, Meta Tags)</label>
+                                    <textarea class="form-control" name="head_scripts" rows="8"
+                                        placeholder="Included inside <head> tag across all pages">{{ $setting->head_scripts }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Body Scripts (Top)</label>
+                                    <textarea class="form-control" name="body_scripts" rows="5"
+                                        placeholder="Included immediately after <body> starts">{{ $setting->body_scripts }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Footer Scripts (Bottom)</label>
+                                    <textarea class="form-control" name="footer_scripts" rows="5" placeholder="Included just before </body> ends">{{ $setting->footer_scripts }}</textarea>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="mt-4">
@@ -500,6 +555,11 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group"><label>Product Image <span class="text-muted small">(130×130 px)</span></label><input type="file" name="feat_files[${featIndex}][prod]" class="form-control" required></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group"><label>Link</label><input type="text" name="feat[${featIndex}][link]" class="form-control" value="#"></div>
                     </div>
                 </div>
             </div>`;

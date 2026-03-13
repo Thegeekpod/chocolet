@@ -4,7 +4,26 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'Chocolet - Quality Confectionery')</title>
+    <title>
+        @if (isset($app_seo) && $app_seo->meta_title)
+            {{ $app_seo->meta_title }}
+        @elseif(isset($app_setting) && $app_setting->global_meta_title)
+            {{ $app_setting->global_meta_title }}
+        @else
+            @yield('title', 'Chocolet - Quality Confectionery')
+        @endif
+    </title>
+
+    <meta name="description"
+        content="{{ isset($app_seo) && $app_seo->meta_description ? $app_seo->meta_description : $app_setting->global_meta_description ?? 'Quality Confectionery for everyone.' }}">
+
+    @if (isset($app_setting) && $app_setting->head_scripts)
+        {!! $app_setting->head_scripts !!}
+    @endif
+
+    @if (isset($app_seo) && $app_seo->other_scripts)
+        {!! $app_seo->other_scripts !!}
+    @endif
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,6 +40,9 @@
 </head>
 
 <body>
+    @if (isset($app_setting) && $app_setting->body_scripts)
+        {!! $app_setting->body_scripts !!}
+    @endif
     <header id="main-header">
         <div class="container header-inner">
             <div class="logo">
@@ -129,7 +151,7 @@
                     <h4 class="footer-title">Categories</h4>
                     <ul class="footer-links">
                         @forelse ($footer_categories as $cat)
-                            <li><a href="{{ url('/products') }}?category={{ $cat->slug }}">{{ $cat->name }}</a>
+                            <li><a href="{{ url('/category/' . $cat->slug) }}">{{ $cat->name }}</a>
                             </li>
                         @empty
                             <li><a href="{{ url('/products') }}">All Products</a></li>
@@ -201,6 +223,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="{{ asset('script.js') }}"></script>
     @yield('scripts')
+
+    @if (isset($app_setting) && $app_setting->footer_scripts)
+        {!! $app_setting->footer_scripts !!}
+    @endif
 </body>
 
 </html>

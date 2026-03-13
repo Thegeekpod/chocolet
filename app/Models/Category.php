@@ -13,4 +13,8 @@ class Category extends Model
         'is_visible_on_home',
         'show_in_footer',
     ];
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

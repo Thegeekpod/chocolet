@@ -32,16 +32,29 @@ class Setting extends Model
         'about_countries',
         'stat_1_val',
         'stat_1_text',
+        'stat_1_link',
         'stat_2_val',
         'stat_2_text',
+        'stat_2_link',
         'stat_3_val',
         'stat_3_text',
+        'stat_3_link',
         'featured_products_title',
-        'featured_products_json', 'brands_data', 'why_title', 'why_features',
+        'featured_products_json',
+        'brands_data',
+        'why_title',
+        'why_features',
+        'global_meta_title',
+        'global_meta_description',
+        'head_scripts',
+        'body_scripts',
+        'footer_scripts',
     ];
 
     protected $casts = [
         'hero_slides' => 'array',
-        'featured_products_json' => 'array', 'brands_data' => 'array', 'why_features' => 'array',
+        'featured_products_json' => 'array',
+        'brands_data' => 'array',
+        'why_features' => 'array',
     ];
 }
