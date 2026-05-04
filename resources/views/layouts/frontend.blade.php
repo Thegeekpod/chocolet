@@ -141,6 +141,13 @@
                             @endif --}}
                         @endif
                     </div>
+                    <div class="footer-brands">
+                        <img src="{{ asset('/assets/logos/EGAC-Accredited.png') }}" alt="fssai-logo">
+                        <img src="{{ asset('/assets/logos/fssai.png') }}" alt="fssai-logo">
+                        <img src="{{ asset('/assets/logos/IAF.png') }}" alt="fssai-logo">
+                        <img src="{{ asset('/assets/logos/ICL.png') }}" alt="fssai-logo">
+                        <img src="{{ asset('/assets/logos/msme.png') }}" alt="fssai-logo">
+                    </div>
                 </div>
 
                 <!-- Quick Links -->
