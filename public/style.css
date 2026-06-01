@@ -1088,9 +1088,9 @@ a {
 .product-card .character {
     position: absolute;
     bottom: -20px;
-    left: 50%;
-    transform: translate(-50%, -6%);
-    width: 130px;
+    left: 60%;
+    transform: translate(-50%, -9%);
+    width: 180px;
     height: auto;
     z-index: 3;
     object-fit: contain;

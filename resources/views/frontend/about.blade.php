@@ -650,6 +650,253 @@
                 font-size: 2rem;
             }
         }
+
+        /* ===== LEADERSHIP SECTION ===== */
+        .leadership-section {
+            padding: 100px 0;
+            background: #fff;
+            position: relative;
+        }
+
+        .leadership-section .section-label {
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-green);
+            margin-bottom: 14px;
+        }
+
+        .leadership-section .section-heading {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--text-dark);
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: stretch;
+        }
+
+        .leader-card {
+            background: var(--bg-light);
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(0, 168, 89, 0.05);
+        }
+
+        .leader-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 55px rgba(0, 168, 89, 0.1);
+            border-color: rgba(0, 168, 89, 0.15);
+        }
+
+        .leader-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+            background: #f0faf5;
+        }
+
+        .leader-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .leader-card:hover .leader-img-wrap img {
+            transform: scale(1.04);
+        }
+
+        .leader-badge {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary-green);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .leader-card.red-theme .leader-badge {
+            color: var(--primary-red);
+        }
+
+        .leader-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .leader-info h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-weight: 800;
+        }
+
+        .leader-role {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .leader-bio {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        /* ===== FACTORY SHOWCASE ===== */
+        .factory-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .factory-inner {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .factory-image-container {
+            position: relative;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .factory-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition-smooth);
+        }
+
+        .factory-image-container:hover img {
+            transform: scale(1.02);
+        }
+
+        .factory-floating-badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: var(--primary-green);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 168, 89, 0.3);
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .factory-floating-badge span {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .factory-floating-badge strong {
+            font-size: 1.4rem;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .factory-info h2 {
+            font-size: 2.8rem;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            line-height: 1.15;
+        }
+
+        .factory-info p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .factory-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .fac-feat-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .fac-feat-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 168, 89, 0.15);
+            color: var(--primary-green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .fac-feat-text h5 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .fac-feat-text p {
+            font-size: 0.88rem;
+            color: var(--text-gray);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+        .fac-feat-text {
+    text-align: left;
+}
+
+        @media (max-width: 1024px) {
+            .leadership-grid,
+            .factory-inner {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .leader-img-wrap {
+                height: 400px;
+            }
+        }
     </style>
 @endsection
 
@@ -673,12 +920,7 @@
                         Founded in 2009 in Chinsurah, West Bengal, Okay Polytech Pvt. Ltd. is proud to present our brand,
                         "OKAY". As a premier manufacturer and supplier of a wide array of confectionery products,
                         including candies, jellies, biscuits, and wafers, we have established ourselves as a leading name
-                        in the industry. Our state-of-the-art infrastructure is equipped with the latest and most advanced
-                        automated machinery, enabling us to produce a diverse range of high-quality products. These include
-                        various types of candies, lollipops, jellies, chocolates, wafers, and biscuits. At Okay Polytech
-                        Pvt. Ltd., we are committed to evolving as the market leader in confectionery items. Our strong
-                        growth plan focuses on delivering impeccable product quality, innovative offerings, and delightful
-                        tastes to our consumers.
+                        in the industry. Guided by a rich family heritage and entrepreneurial spirit spanning over 45 years, we are committed to delivering impeccable product quality, innovative offerings, and delightful tastes to our consumers. Our state-of-the-art infrastructure is equipped with the latest and most advanced automated machinery, enabling us to serve generations of customers across Bengal and India.
                     </p>
                     <div class="about-founded-badge">
                         <div class="badge-icon">🏭</div>
@@ -692,9 +934,9 @@
                 {{-- Right: Stats --}}
                 <div class="about-stats-wrap">
                     <div class="about-stat-card">
-                        <span class="stat-icon">🎂</span>
-                        <div class="stat-num">15+</div>
-                        <p class="stat-label">Years of Excellence</p>
+                        <span class="stat-icon">👑</span>
+                        <div class="stat-num">45+</div>
+                        <p class="stat-label">Years of Legacy</p>
                     </div>
                     <div class="about-stat-card red">
                         <span class="stat-icon">🍭</span>
@@ -717,6 +959,108 @@
         </div>
     </section>
 
+    {{-- ===== LEADERSHIP SECTION ===== --}}
+    <section class="leadership-section">
+        <div class="container">
+            <p class="section-label">Our Leadership</p>
+            <h2 class="section-heading">The Visionaries Behind Okay Confectionery</h2>
+
+            <div class="leadership-grid">
+                
+                {{-- Dipak Ghosh --}}
+                <div class="leader-card">
+                    <div class="leader-img-wrap">
+                        <img src="{{ asset('assets/Dipak-Ghosh.png') }}" alt="Dipak Ghosh">
+                        <span class="leader-badge">Founder & Visionary</span>
+                    </div>
+                    <div class="leader-info">
+                        <h3>Dipak Ghosh</h3>
+                        <span class="leader-role">Founder, Okay Confectionery</span>
+                        <p class="leader-bio">
+                            Dipak Ghosh is the visionary founder behind Okay Confectionery, whose inspiring journey began more than 45 years ago with a passion for confectionery and a determination to build something meaningful from the ground up. Starting the business at a very young age without any external support, his dedication, hard work, and entrepreneurial spirit transformed a small initiative into one of the leading confectionery brands in Bengal and across India. Under his leadership, Okay Confectionery has grown with a strong commitment to quality, trust, and innovation, earning the love of generations of customers.
+                        </p>
+                    </div>
+                </div>
+
+                {{-- Parash Ghosh --}}
+                <div class="leader-card red-theme">
+                    <div class="leader-img-wrap">
+                        <img src="{{ asset('assets/Parash-Ghosh.png') }}" alt="Parash Ghosh">
+                        <span class="leader-badge">Director</span>
+                    </div>
+                    <div class="leader-info">
+                        <h3>Parash Ghosh</h3>
+                        <span class="leader-role">Director, Okay Confectionery</span>
+                        <p class="leader-bio">
+                            Parash Ghosh, son of Dipak Ghosh, joined the family business after completing his studies and has been actively contributing to the growth and success of Okay Confectionery for the last 10 years. With a modern vision and strong dedication towards the brand, he has played an important role in expanding the company’s presence while continuing the legacy of quality, trust, and customer satisfaction established by his father. His passion and commitment continue to drive the company towards new milestones in the confectionery industry.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {{-- ===== FACTORY SHOWCASE ===== --}}
+    <section class="factory-section">
+        <div class="container">
+            <div class="factory-inner">
+                
+                {{-- Left: Image --}}
+                <div class="factory-image-container">
+                    <img src="{{ asset('assets/Okay-Factory.jpg.jpeg') }}" alt="Okay Confectionery Factory">
+                    <div class="factory-floating-badge">
+                        <span>Production</span>
+                        <strong>100% Auto</strong>
+                    </div>
+                </div>
+
+                {{-- Right: Content --}}
+                <div class="factory-info">
+                    <h2>Our State-of-the-Art<br>Manufacturing Facility</h2>
+                    <p>
+                        Okay Confectionery operates from a highly sophisticated manufacturing plant equipped with cutting-edge, fully automated machinery. Our dedication to quality and hygiene is absolute, ensuring every candy, wafer, and chocolate is produced under the highest safety standards to deliver pure joy to our consumers.
+                    </p>
+                    
+                    <div class="factory-features">
+                        <div class="fac-feat-item">
+                            <div class="fac-feat-icon">⚙️</div>
+                            <div class="fac-feat-text">
+                                <h5>Automated Lines</h5>
+                                <p>Human-touch-free processing for supreme hygiene and quality.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="fac-feat-item">
+                            <div class="fac-feat-icon">🛡️</div>
+                            <div class="fac-feat-text">
+                                <h5>Quality Assured</h5>
+                                <p>Rigorous multi-stage checkups from raw inputs to packaging.</p>
+                            </div>
+                        </div>
+
+                        <div class="fac-feat-item">
+                            <div class="fac-feat-icon">🧼</div>
+                            <div class="fac-feat-text">
+                                <h5>Hygienic Standards</h5>
+                                <p>Compliant with global standards and FSSAI regulations.</p>
+                            </div>
+                        </div>
+
+                        <div class="fac-feat-item">
+                            <div class="fac-feat-icon">🚚</div>
+                            <div class="fac-feat-text">
+                                <h5>Massive Scale</h5>
+                                <p>Serving millions of happy faces in Bengal and across India daily.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     {{-- ===== MISSION / VISION / VALUES ===== --}}
     <section class="mvv-section">
         <div class="container">
@@ -731,7 +1075,7 @@
                     <span class="mvv-tag">Mission</span>
                     <h3>Mission</h3>
                     <p>
-                        Okay Polytech Pvt. Ltd. inspires and innovates with a unique &amp; wide range of
+                        Okay Confectionery inspires and innovates with a unique &amp; wide range of
                         confectionery Products. This allows us to accommodate consumer wishes and expectations
                         through high-quality products, with appearances &amp; taste. We are dedicated to fully
                         satisfying our customers' needs through our commitment to doing our job better each day
@@ -778,7 +1122,6 @@
         </div>
     </section>
 
-
     {{-- ===== PRODUCT & PROCESS ===== --}}
     <section class="process-section">
         <div class="process-inner">
@@ -814,18 +1157,6 @@
                             consumer.</p>
                     </div>
                 </div>
-
-                {{-- <div class="products-offered">
-                    <h3>🍬 Our Complete Product Range</h3>
-                    <div class="product-pills">
-                        <span class="product-pill">🍭 Candies</span>
-                        <span class="product-pill">🍡 Lollipops</span>
-                        <span class="product-pill">🍮 Jellies</span>
-                        <span class="product-pill">🍫 Chocolates</span>
-                        <span class="product-pill">🧇 Wafers</span>
-                        <span class="product-pill">🍪 Biscuits</span>
-                    </div>
-                </div> --}}
 
             </div>
         </div>
