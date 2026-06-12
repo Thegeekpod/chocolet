@@ -115,7 +115,7 @@
                         @endif
                     </div>
                     <p class="footer-tagline">
-                        {{ $app_setting->footer_text ?? 'Quality Confectionery for everyone.' }}
+                      {!! $app_setting?->footer_text ?? 'Quality Confectionery for everyone.' !!}
                     </p>
                     <div class="footer-social">
                         @if ($app_setting)

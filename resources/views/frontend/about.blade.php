@@ -918,7 +918,7 @@
                     </h1>
                     <p class="about-hero-subtitle">
                         Founded in 2009 in Chinsurah, West Bengal, Okay Polytech Pvt. Ltd. is proud to present our brand,
-                        "OKAY". As a premier manufacturer and supplier of a wide array of confectionery products,
+                        "OKAY". As a premier manufacturer and supplier of a wide array of Polytech products,
                         including candies, jellies, biscuits, and wafers, we have established ourselves as a leading name
                         in the industry. Guided by a rich family heritage and entrepreneurial spirit spanning over 45 years, we are committed to delivering impeccable product quality, innovative offerings, and delightful tastes to our consumers. Our state-of-the-art infrastructure is equipped with the latest and most advanced automated machinery, enabling us to serve generations of customers across Bengal and India.
                     </p>
@@ -940,7 +940,7 @@
                     </div>
                     <div class="about-stat-card red">
                         <span class="stat-icon">🍭</span>
-                        <div class="stat-num">50+</div>
+                        <div class="stat-num">100+</div>
                         <p class="stat-label">Product Varieties</p>
                     </div>
                     <div class="about-stat-card">
@@ -963,7 +963,7 @@
     <section class="leadership-section">
         <div class="container">
             <p class="section-label">Our Leadership</p>
-            <h2 class="section-heading">The Visionaries Behind Okay Confectionery</h2>
+            <h2 class="section-heading">The Visionaries Behind Okay Polytech</h2>
 
             <div class="leadership-grid">
                 
@@ -975,9 +975,9 @@
                     </div>
                     <div class="leader-info">
                         <h3>Dipak Ghosh</h3>
-                        <span class="leader-role">Founder, Okay Confectionery</span>
+                        <span class="leader-role">Founder, Okay Polytech</span>
                         <p class="leader-bio">
-                            Dipak Ghosh is the visionary founder behind Okay Confectionery, whose inspiring journey began more than 45 years ago with a passion for confectionery and a determination to build something meaningful from the ground up. Starting the business at a very young age without any external support, his dedication, hard work, and entrepreneurial spirit transformed a small initiative into one of the leading confectionery brands in Bengal and across India. Under his leadership, Okay Confectionery has grown with a strong commitment to quality, trust, and innovation, earning the love of generations of customers.
+                            Dipak Ghosh is the visionary founder behind Okay Polytech, whose inspiring journey began more than 45 years ago with a passion for Polytech and a determination to build something meaningful from the ground up. Starting the business at a very young age without any external support, his dedication, hard work, and entrepreneurial spirit transformed a small initiative into one of the leading Polytech brands in Bengal and across India. Under his leadership, Okay Polytech has grown with a strong commitment to quality, trust, and innovation, earning the love of generations of customers.
                         </p>
                     </div>
                 </div>
@@ -990,9 +990,9 @@
                     </div>
                     <div class="leader-info">
                         <h3>Parash Ghosh</h3>
-                        <span class="leader-role">Director, Okay Confectionery</span>
+                        <span class="leader-role">Director, Okay Polytech</span>
                         <p class="leader-bio">
-                            Parash Ghosh, son of Dipak Ghosh, joined the family business after completing his studies and has been actively contributing to the growth and success of Okay Confectionery for the last 10 years. With a modern vision and strong dedication towards the brand, he has played an important role in expanding the company’s presence while continuing the legacy of quality, trust, and customer satisfaction established by his father. His passion and commitment continue to drive the company towards new milestones in the confectionery industry.
+                            Parash Ghosh, son of Dipak Ghosh, joined the family business after completing his studies and has been actively contributing to the growth and success of Okay Polytech for the last 10 years. With a modern vision and strong dedication towards the brand, he has played an important role in expanding the company’s presence while continuing the legacy of quality, trust, and customer satisfaction established by his father. His passion and commitment continue to drive the company towards new milestones in the Polytech industry.
                         </p>
                     </div>
                 </div>
@@ -1008,7 +1008,7 @@
                 
                 {{-- Left: Image --}}
                 <div class="factory-image-container">
-                    <img src="{{ asset('assets/Okay-Factory.jpg.jpeg') }}" alt="Okay Confectionery Factory">
+                    <img src="{{ asset('assets/Okay-Factory.jpg.jpeg') }}" alt="Okay Polytech Factory">
                     <div class="factory-floating-badge">
                         <span>Production</span>
                         <strong>100% Auto</strong>
@@ -1019,7 +1019,7 @@
                 <div class="factory-info">
                     <h2>Our State-of-the-Art<br>Manufacturing Facility</h2>
                     <p>
-                        Okay Confectionery operates from a highly sophisticated manufacturing plant equipped with cutting-edge, fully automated machinery. Our dedication to quality and hygiene is absolute, ensuring every candy, wafer, and chocolate is produced under the highest safety standards to deliver pure joy to our consumers.
+                        Okay Polytech operates from a highly sophisticated manufacturing plant equipped with cutting-edge, fully automated machinery. Our dedication to quality and hygiene is absolute, ensuring every candy, wafer, and chocolate is produced under the highest safety standards to deliver pure joy to our consumers.
                     </p>
                     
                     <div class="factory-features">
@@ -1075,8 +1075,8 @@
                     <span class="mvv-tag">Mission</span>
                     <h3>Mission</h3>
                     <p>
-                        Okay Confectionery inspires and innovates with a unique &amp; wide range of
-                        confectionery Products. This allows us to accommodate consumer wishes and expectations
+                        Okay Polytech inspires and innovates with a unique &amp; wide range of
+                        Polytech Products. This allows us to accommodate consumer wishes and expectations
                         through high-quality products, with appearances &amp; taste. We are dedicated to fully
                         satisfying our customers' needs through our commitment to doing our job better each day
                         meticulously select and use only the highest quality raw materials and ingredients to
@@ -1091,8 +1091,8 @@
                     <span class="mvv-tag">Vision</span>
                     <h3>Vision</h3>
                     <p>
-                        To build a leading confectionery-based company with the drive to grow and develop the
-                        confectionery market, through our longstanding expertise, innovation and empowered talent.
+                        To build a leading Polytech-based company with the drive to grow and develop the
+                        Polytech market, through our longstanding expertise, innovation and empowered talent.
                     </p>
                     <div class="mvv-accent"></div>
                 </div>

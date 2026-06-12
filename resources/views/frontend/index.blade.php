@@ -99,10 +99,12 @@
                         <h4 class="counter" data-target="{{ $app_setting->stat_1_val ?? '100' }}">0</h4>
                         <p>{{ $app_setting->stat_1_text ?? 'Premium Products' }}</p>
                     </a>
+                   @if($app_setting->stat_2_text != '0')
                     <a href="{{ $app_setting->stat_2_link ?? '#' }}" class="stat-item">
                         <h4 class="counter" data-target="{{ $app_setting->stat_2_val ?? '50' }}">0</h4>
                         <p>{{ $app_setting->stat_2_text ?? 'Global Export' }}</p>
                     </a>
+                    @endif
                     <a href="{{ $app_setting->stat_3_link ?? '#' }}" class="stat-item">
                         <h4 class="counter" data-target="{{ $app_setting->stat_3_val ?? '1000' }}">0</h4>
                         <p>{{ $app_setting->stat_3_text ?? 'Happy Clients' }}</p>
@@ -190,7 +192,7 @@
         <div class="container">
             <div class="products-header">
                 <span class="category">Premium Selection</span>
-                <h2 class="section-title">Our Products</h2>
+                <h2 class="section-title">New Launch</h2>
                 <p class="max-w-600-center">
                     Discover our handcrafted confectionery collection, made with
                     premium ingredients and innovative flavors

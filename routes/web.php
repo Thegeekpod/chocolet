@@ -7,7 +7,9 @@ use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     $categories = \App\Models\Category::where('is_visible_on_home', true)->get();
-    $products = \App\Models\Product::where('is_visible_on_home', true)->get();
+   $products = \App\Models\Product::where('is_visible_on_home', true)
+    ->orderBy('id', 'desc')
+    ->get();
     return view('frontend.index', compact('categories', 'products'));
 });
 
