@@ -12,25 +12,31 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Category::create([
-            'name' => 'Biscuits & Cookies',
-            'slug' => 'biscuits-and-cookies',
-            'image' => 'categories/biscuit.png',
-            'is_visible_on_home' => true,
-        ]);
+        \App\Models\Category::updateOrCreate(
+            ['slug' => 'biscuits-and-cookies'],
+            [
+                'name' => 'Biscuits & Cookies',
+                'image' => 'categories/biscuit.png',
+                'is_visible_on_home' => true,
+            ]
+        );
 
-        \App\Models\Category::create([
-            'name' => 'Sweet Candies',
-            'slug' => 'sweet-candies',
-            'image' => 'categories/candy.png',
-            'is_visible_on_home' => true,
-        ]);
+        \App\Models\Category::updateOrCreate(
+            ['slug' => 'sweet-candies'],
+            [
+                'name' => 'Sweet Candies',
+                'image' => 'categories/candy.png',
+                'is_visible_on_home' => true,
+            ]
+        );
 
-        \App\Models\Category::create([
-            'name' => 'Fine Chocolates',
-            'slug' => 'fine-chocolates',
-            'image' => 'categories/chocolate.png',
-            'is_visible_on_home' => true,
-        ]);
+        \App\Models\Category::updateOrCreate(
+            ['slug' => 'fine-chocolates'],
+            [
+                'name' => 'Fine Chocolates',
+                'image' => 'categories/chocolate.png',
+                'is_visible_on_home' => true,
+            ]
+        );
     }
 }

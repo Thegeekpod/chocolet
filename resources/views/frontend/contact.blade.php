@@ -300,6 +300,9 @@
             .contact-left {
                 padding: 30px 24px;
             }
+            .contact-info-card{
+                text-align:left;
+            }
         }
     </style>
 @endsection
@@ -310,12 +313,12 @@
 
             {{-- Page Header --}}
             <div style="text-align:center; margin-bottom: 50px;">
-                <span
+                <!-- <span
                     style="display:inline-block; padding:7px 18px; background:rgba(0,168,89,0.1); color:var(--primary-green); border-radius:50px; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Get
-                    In Touch</span>
+                    In Touch</span> -->
                 <h1 style="font-size:3rem; color:var(--text-dark); margin-bottom:14px;">Contact Us</h1>
                 <p style="font-size:1.05rem; color:var(--text-gray); max-width:520px; margin:0 auto;">Have a question or want
-                    to enquire about our products? We're here to help.</p>
+                    to enquire about our products? <br>We're here to help.</p>
             </div>
 
             {{-- Info Cards --}}
@@ -330,7 +333,7 @@
                 <div class="contact-info-card">
                     <div class="ci-icon"><i class="fas fa-envelope"></i></div>
                     <div class="ci-body">
-                        <h4>E-Mail</h4>
+                        <h4>E-mail</h4>
                         <p>
                             <a href="mailto:okaypoly2009@gmail.com">okaypoly2009@gmail.com</a><br>
                             <a href="mailto:support@okpolytech.in">support@okpolytech.in</a>

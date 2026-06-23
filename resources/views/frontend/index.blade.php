@@ -16,7 +16,7 @@
                 <div class="hero-btns">
                     <a href="{{ url('/products') }}" class="btn btn-primary">View Products <i
                             class="fas fa-arrow-right"></i></a>
-                    <a href="{{ url('/contact') }}" class="btn btn-secondary">Contact Us</a>
+                    <!-- <a href="{{ url('/contact') }}" class="btn btn-secondary">Contact Us</a> -->
                 </div>
             </div>
             <div class="hero-visual">
@@ -71,7 +71,7 @@
                         <span>Years Experience</span>
                     </div>
                 </div>
-                <div class="float-card content-2">
+                <!-- <div class="float-card content-2">
                     <div class="float-icon">
                         <i class="fas fa-globe"></i>
                     </div>
@@ -79,7 +79,7 @@
                         <strong>{{ $app_setting->about_countries ?? '50+' }}</strong>
                         <span>Countries</span>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="about-content">

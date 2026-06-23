@@ -1660,7 +1660,7 @@ footer::before {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 60px;
     padding-bottom: 60px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1737,6 +1737,7 @@ footer::before {
 
 .footer-column {
     animation: fade-in-up 0.8s ease;
+    text-align: left;
 }
 
 .footer-column:nth-child(2) {
@@ -1787,10 +1788,12 @@ footer::before {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: left;
 }
 
 .footer-links li {
     margin-bottom: 12px;
+    text-align: left;
 }
 
 .footer-links a {
@@ -1799,24 +1802,20 @@ footer::before {
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
 }
 
 .footer-links a::before {
     content: '→';
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.3s ease;
+    display: none;
+    margin-right: 8px;
 }
 
 .footer-links a:hover {
     color: var(--primary-green);
-    padding-left: 10px;
 }
 
 .footer-links a:hover::before {
-    opacity: 1;
-    transform: translateX(0);
+    display: inline-block;
 }
 
 .contact-item {

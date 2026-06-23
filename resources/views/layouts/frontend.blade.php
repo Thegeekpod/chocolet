@@ -163,7 +163,7 @@
                 </div>
 
                 <!-- Products -->
-                <div class="footer-column">
+                <!-- <div class="footer-column">
                     <h4 class="footer-title">Categories</h4>
                     <ul class="footer-links">
                         @forelse ($footer_categories as $cat)
@@ -173,7 +173,7 @@
                             <li><a href="{{ url('/products') }}">All Products</a></li>
                         @endforelse
                     </ul>
-                </div>
+                </div> -->
 
                 <!-- Contact -->
                 <div class="footer-column">
