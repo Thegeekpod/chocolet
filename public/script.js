@@ -359,9 +359,91 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Mobile Menu ---
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     const navPill = document.querySelector('.nav-pill');
-    hamburgerBtn.addEventListener('click', () => {
-        document.body.classList.toggle('mobileMenuActive');
-    });
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            document.body.classList.toggle('mobileMenuActive');
+        });
+    }
+
+    // --- WhatsApp Floating Widget ---
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const whatsappCloseBtn = document.getElementById('whatsappCloseBtn');
+    const whatsappChatWindow = document.getElementById('whatsappChatWindow');
+    const whatsappInput = document.getElementById('whatsappInput');
+    const whatsappSendBtn = document.getElementById('whatsappSendBtn');
+    const whatsappMessageTime = document.getElementById('whatsappMessageTime');
+
+    if (whatsappBtn && whatsappChatWindow) {
+        // Set dynamic current time in the message bubble
+        if (whatsappMessageTime) {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            whatsappMessageTime.textContent = hours + ':' + minutes;
+        }
+
+        // Toggle chat window open/close
+        whatsappBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            whatsappChatWindow.classList.toggle('active');
+        });
+
+        // Close chat window
+        if (whatsappCloseBtn) {
+            whatsappCloseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                whatsappChatWindow.classList.remove('active');
+            });
+        }
+
+        // Close on clicking outside the chat window
+        document.addEventListener('click', (e) => {
+            if (!whatsappChatWindow.contains(e.target) && !whatsappBtn.contains(e.target)) {
+                whatsappChatWindow.classList.remove('active');
+            }
+        });
+
+        // Prevent click events inside chat window from bubbling up and closing it
+        whatsappChatWindow.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Send message function
+        const sendWhatsAppMessage = () => {
+            const userMsg = whatsappInput.value.trim();
+            const phone = '918584912729';
+            let whatsappUrl = '';
+            
+            if (userMsg) {
+                whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(userMsg)}`;
+            } else {
+                // Default message if text area is empty
+                const defaultMsg = "Hello! I have a query about Okay Polytech.";
+                whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(defaultMsg)}`;
+            }
+            
+            window.open(whatsappUrl, '_blank');
+            whatsappInput.value = '';
+            whatsappChatWindow.classList.remove('active');
+        };
+
+        // Click send button
+        if (whatsappSendBtn) {
+            whatsappSendBtn.addEventListener('click', sendWhatsAppMessage);
+        }
+
+        // Press Enter to send (but allow shift+Enter for new line)
+        if (whatsappInput) {
+            whatsappInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendWhatsAppMessage();
+                }
+            });
+        }
+    }
 
     // Refresh ScrollTrigger after all content loads
     window.addEventListener('load', () => {

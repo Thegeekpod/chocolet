@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="{{ asset('style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ time() }}" />
     <link rel="stylesheet" href="{{ asset('pages.css') }}" />
     <link rel="stylesheet" href="{{ asset('responsive.css') }}" />
     @yield('styles')
@@ -227,6 +227,54 @@
     </footer>
 
 
+    <!-- WhatsApp Floating Button & Chat Widget -->
+    <div class="whatsapp-widget" id="whatsappWidget">
+        <!-- Floating Button -->
+        <button class="whatsapp-btn" id="whatsappBtn" aria-label="Chat on WhatsApp">
+            <span class="whatsapp-pulse"></span>
+            <i class="fab fa-whatsapp"></i>
+            <span class="whatsapp-btn-text">Chat with us</span>
+        </button>
+
+        <!-- Chat Window Popup -->
+        <div class="whatsapp-chat-window" id="whatsappChatWindow">
+            <div class="whatsapp-chat-header">
+                <div class="whatsapp-agent-info">
+                    <div class="whatsapp-avatar">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="whatsapp-online-dot"></span>
+                    </div>
+                    <div class="whatsapp-agent-meta">
+                        <h4 class="whatsapp-agent-name">Okay Polytech</h4>
+                        <p class="whatsapp-agent-status">Online</p>
+                    </div>
+                </div>
+                <button class="whatsapp-close-btn" id="whatsappCloseBtn" aria-label="Close Chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="whatsapp-chat-body">
+                <div class="whatsapp-message-bubble">
+                    <div class="whatsapp-message-sender">Okay Polytech</div>
+                    <div class="whatsapp-message-text">👋 Hello! Welcome to Okay Polytech.
+
+Thank you for reaching out to us. How can we assist you today? Please leave your query here, and one of our team members will get back to you shortly.</div>
+                    <div class="whatsapp-message-time" id="whatsappMessageTime">13:26</div>
+                </div>
+            </div>
+
+            <div class="whatsapp-chat-footer">
+                <div class="whatsapp-input-container">
+                    <textarea class="whatsapp-input" id="whatsappInput" placeholder="Type your query here..." rows="1"></textarea>
+                    <button class="whatsapp-send-btn" id="whatsappSendBtn" aria-label="Send to WhatsApp">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
@@ -237,7 +285,7 @@
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="{{ asset('script.js') }}"></script>
+    <script src="{{ asset('script.js') }}?v={{ time() }}"></script>
     @yield('scripts')
 
     @if (isset($app_setting) && $app_setting->footer_scripts)
