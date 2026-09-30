@@ -216,7 +216,7 @@
                 <div class="footer-bottom-content">
                     <p class="copyright">© {{ date('Y') }} All Rights Reserved Okay Polytech | Powered by <a href="https://dacfinn.com/" target="_blank" style="color: inherit; text-decoration: underline;">Dacfinn Creative Minds</a></p>
                     <ul class="footer-bottom-links">
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                         <li><a href="#">Sitemap</a></li>
                     </ul>

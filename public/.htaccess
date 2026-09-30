@@ -5,6 +5,20 @@
 
     RewriteEngine On
 
+    # Block sensitive hidden files and folders (e.g. .env, .git)
+    RewriteRule (^|/)\.(?!well-known/) - [F,L]
+
+    # Block direct access to sensitive file extensions
+    <FilesMatch "(?i)\.(env|log|sql|sqlite|yml|yaml|ini|sh|bak|dist|conf)$">
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order Deny,Allow
+            Deny from all
+        </IfModule>
+    </FilesMatch>
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -22,4 +36,11 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>

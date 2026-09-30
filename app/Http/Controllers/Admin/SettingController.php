@@ -21,8 +21,8 @@ class SettingController extends Controller
 
         $validated = $request->validate([
             'site_name' => 'required|string|max:255',
-            'logo' => 'nullable|image',
-            'footer_logo' => 'nullable|image',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
+            'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
             'footer_text' => 'nullable|string',
             'contact_email' => 'nullable|email',
             'contact_phone' => 'nullable|string|max:20',
@@ -39,7 +39,7 @@ class SettingController extends Controller
             'about_title' => 'nullable|string',
             'about_description_1' => 'nullable|string',
             'about_description_2' => 'nullable|string',
-            'about_image' => 'nullable|image',
+            'about_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
             'about_years' => 'nullable|string',
             'about_countries' => 'nullable|string',
             'stat_1_val' => 'nullable|string',
@@ -58,6 +58,13 @@ class SettingController extends Controller
             'head_scripts' => 'nullable|string',
             'body_scripts' => 'nullable|string',
             'footer_scripts' => 'nullable|string',
+            'hero_slides_files.*.bg' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
+            'hero_slides_files.*.prod' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
+            'feat_files.*.bg' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
+            'feat_files.*.logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
+            'feat_files.*.prod' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
+            'brand_main_files.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
+            'brand_logos_files.*.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
         ]);
 
         // 1. Static Files

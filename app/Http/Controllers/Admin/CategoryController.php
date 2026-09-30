@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
             'is_visible_on_home' => 'nullable|boolean',
             'show_in_footer' => 'nullable|boolean',
         ]);
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
             'is_visible_on_home' => 'nullable|boolean',
             'show_in_footer' => 'nullable|boolean',
         ]);

@@ -30,7 +30,11 @@ Route::get('/gallery', function () {
 Route::get('/contact', function () {
     return view('frontend.contact');
 });
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit')->middleware('throttle:6,1');
+
+Route::get('/privacy-policy', function () {
+    return view('frontend.privacy-policy');
+})->name('privacy.policy');
 
 Route::get('/product/{slug}', function ($slug) {
     $product = \App\Models\Product::where('slug', $slug)->firstOrFail();
@@ -50,7 +54,7 @@ Route::get('/category/{slug}', function ($slug) {
 
 // Admin Auth Routes
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/admin/login', [AuthController::class, 'login']);
+Route::post('/admin/login', [AuthController::class, 'login'])->middleware('throttle:5,1');
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Protected Admin Routes
