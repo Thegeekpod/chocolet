@@ -23,10 +23,24 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
+        $throttleKey = \Illuminate\Support\Str::transliterate(
+            \Illuminate\Support\Str::lower($request->input('email')) . '|' . $request->ip()
+        );
+
+        if (\Illuminate\Support\Facades\RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = \Illuminate\Support\Facades\RateLimiter::availableIn($throttleKey);
+            return back()->withErrors([
+                'email' => "Too many login attempts. Please try again in {$seconds} seconds.",
+            ])->onlyInput('email');
+        }
+
         if (Auth::attempt($credentials)) {
+            \Illuminate\Support\Facades\RateLimiter::clear($throttleKey);
             $request->session()->regenerate();
             return redirect()->intended('/admin');
         }
+
+        \Illuminate\Support\Facades\RateLimiter::hit($throttleKey, 60);
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',

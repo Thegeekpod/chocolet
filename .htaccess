@@ -1,11 +1,14 @@
+# Disable directory listing and multi-views
+Options -Indexes -MultiViews
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # 1. Block access to hidden files/directories (e.g. .env, .git)
+    # 1. Block access to hidden files/directories (e.g. .env, .git, .htaccess)
     RewriteRule (^|/)\.(?!well-known/) - [F,L]
 
     # 2. Block access to sensitive files and extensions
-    <FilesMatch "(?i)\.(env|log|sql|sqlite|yml|yaml|ini|sh|bak|dist|conf|json|lock|md)$">
+    <FilesMatch "(?i)\.(env|log|sql|sqlite|yml|yaml|ini|sh|bash|bak|dist|conf|json|lock|md|git|svn)$">
         <IfModule mod_authz_core.c>
             Require all denied
         </IfModule>
@@ -15,8 +18,8 @@
         </IfModule>
     </FilesMatch>
 
-    # 3. Block direct access to artisan and sensitive files
-    <Files "artisan">
+    # 3. Block direct access to artisan, server.php, composer, and package files
+    <FilesMatch "(?i)^(artisan|server\.php|composer\.(json|lock)|package\.json|webpack\.mix\.js|vite\.config\.js)$">
         <IfModule mod_authz_core.c>
             Require all denied
         </IfModule>
@@ -24,12 +27,24 @@
             Order Deny,Allow
             Deny from all
         </IfModule>
-    </Files>
+    </FilesMatch>
 
     # 4. Block access to internal Laravel directories
-    RewriteRule ^(app|bootstrap|config|database|resources|routes|tests)/ - [F,L]
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|tests|vendor)/ - [F,L]
+    RewriteRule ^storage/(framework|logs|app)/ - [F,L]
 
-    # 5. Route all other requests to the public/ folder if DocumentRoot is not set to public/
+    # 5. Block known malicious exploit scanners and user-agents
+    RewriteCond %{HTTP_USER_AGENT} (?i)(sqlmap|nikto|wpscan|acunetix|nessus|masscan|zgrab|nmap|havij|dirbuster) [NC]
+    RewriteRule .* - [F,L]
+
+    # 6. Route all public requests cleanly to the public/ folder
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>

@@ -416,6 +416,11 @@
 
                     <form action="{{ route('contact.submit') }}" method="POST" class="contact-form-inner">
                         @csrf
+                        {{-- Anti-Bot Honeypot Field --}}
+                        <div style="display:none !important; visibility:hidden; opacity:0; position:absolute; left:-9999px;">
+                            <label for="company_check_field">Leave this empty</label>
+                            <input type="text" id="company_check_field" name="company_check_field" value="" tabindex="-1" autocomplete="off">
+                        </div>
                         <div class="form-row-2">
                             <div class="form-group">
                                 <label for="full_name">Full Name <span style="color:var(--primary-red)">*</span></label>
